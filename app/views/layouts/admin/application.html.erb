@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MBlog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin/application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-light ">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <h1>rBlog<span> Manager</span> </h1>
+            </a>
+            <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> %>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav show">
+                    <li class="nav-link <%= params[:controller] == 'admin/posts' ? 'active' : ''%> ">
+                        <%= link_to "Posts", admin_posts_path%>
+                    </li>
+                    <li class="nav-link <%= params[:controller] == 'admin/categories' ? 'active' : ''%>">
+                        <%= link_to "Categories", admin_categories_path%>
+                    </li>
+                    <li class="nav-link <%= params[:controller] == 'admin/users' ? 'active' : ''%>">
+                         <%= link_to "Users", admin_users_path%>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 search-form navbar-right">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well">
+                        <% if flash[:notice] %>
+                            <div class="alert alert-success"><%= flash[:notice]%></div>
+                        <% end %>
+                            
+                        <% if flash[:alert] %>
+                            <div class="alert alert-danger"><%= flash[:alert]%></div>
+                        <% end %>
+                        <%= yield %>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p> Copyright &copy; 2014, rBlog | <a href="login.html"> Admin Login</a></p>
+    </footer>
+
+
+    <!-- /.container -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="js/bootstrap.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+</body>
+</html>

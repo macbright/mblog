@@ -1,2 +1,18 @@
-<h1>Admin::Categories#new</h1>
-<p>Find me in app/views/admin/categories/new.html.erb</p>
+<h2> Add New Category</h2>
+<%= form_for [:admin, @category]  do |x| %>
+
+    <%# Check for errors %>
+    <% if @category.errors.any? %>
+        <%  @category.errors.full_messages.each do |msg| %>
+            <%# display error messages %>
+            <div class="alert alert-danger"><%= msg%></div>
+        <% end %>
+    <% end %>
+    <div class="form-group">
+        <%= x.label :name%> <br/>
+        <%= x.text_field :name, class: 'form-control'%><br />
+    </div>
+
+    <%= x.submit "submit", class:'btn btn-primary' %>
+    <%= link_to "cancel", admin_categories_path, class:'btn btn-default'%>
+<% end %>

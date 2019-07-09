@@ -7,9 +7,86 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-md navbar-light  ">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <h1>rBlog </h1>
+            </a>
+            <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> %>
+        </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <%= link_to 'Home', root_path%>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'About', about_path%>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Contact', contact_path%>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0 search-form navbar-right">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-8">
+                <%# alerts & messages %>
+                    <% if flash[:notice]%>
+                        <div class="alert alert-danger"><%= flash[:notice]%></div>
+                    <% end %>
+                    
+                    <% if flash[:alert]%>
+                        <div class="alert alert-danger"><%= flash[:alert]%></div>
+                    <% end %>
+                    <%= yield %>
+                </div>
+                <div class="col-md-4">
+                    <%= render 'partials/sidebar'%>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <%= render 'partials/footer'%>
+    
+
+
+    <!-- /.container -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="js/bootstrap.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
   </body>
 </html>
