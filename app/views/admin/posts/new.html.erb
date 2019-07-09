@@ -22,7 +22,7 @@
 
      <div class="form-group">
         <%= x.label :author %> <br/>
-        <%= x.select :user_id, User.all.collect { |y| [y.first_name + ' ' + y.last_name, y.id]},
+        <%= x.select :user_id, User.all.collect { |y| [y.name,  y.id]},
         {:include_blank => 'select one'}, class: 'form-control'%>
     </div>
 
