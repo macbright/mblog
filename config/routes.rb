@@ -41,11 +41,15 @@ Rails.application.routes.draw do
   get 'posts/index'
   get 'posts/show'
 
-  resources :posts, :categories, :comments
+  resources :posts, :categories
   resources "contacts", only: [:new, :create]
 
   namespace :admin do 
-    resources :posts, :categories, :comments, :users
+    resources :posts, :categories, :comments, :users, :sessions
+  end
+
+  resources :posts do 
+    resources :comments
   end
 
   root "posts#index"
